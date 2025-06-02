@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Моё Mini App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+      body {
+        font-family: sans-serif;
+        text-align: center;
+        padding: 40px;
+      }
+      button {
+        font-size: 18px;
+        padding: 10px 20px;
+        background-color: #2AABEE;
+        border: none;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Привет из Telegram Mini App!</h1>
+    <p id="user-info">Загружаем данные...</p>
+    <button onclick="sayHello()">Поздороваться</button>
+
+    <script>
+      const tg = window.Telegram.WebApp;
+      tg.expand();
+
+      const user = tg.initDataUnsafe.user;
+      document.getElementById("user-info").innerText = `Привет, ${user.first_name || "незнакомец"}!`;
+
+      function sayHello() {
+        alert("Рад тебя видеть, " + (user.first_name || "друг") + "!");
+      }
+    </script>
+  </body>
+</html>
